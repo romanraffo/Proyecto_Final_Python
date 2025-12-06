@@ -48,5 +48,5 @@ Las respuestas se devuelven en formato JSON.
 </ol>
 
 <h2>📬 Autor</h2>
-<p>Proyecto realizado por <strong>Roman Raffo y Joaquín Del Percio</strong> para la materia Lenguajes 2025 - UCALP.</p>
+<p>Proyecto realizado por <strong>Román Raffo y Joaquín Del Percio</strong> para la materia Lenguajes 2025 - UCALP.</p>
 
