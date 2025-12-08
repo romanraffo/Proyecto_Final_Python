@@ -13,7 +13,22 @@ Puntos elegidos a realizar:
 
 6. Distribución del rating por idioma o país de producción.
 Cada análisis debe acompañarse con interpretación textual (no solo gráficos).
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+                ¡¡¡IMPORTANTE!!!
+👇 ACLARACIÓN DE LA ORGANIZACIÓN DEL PROYECTO👇
+
+CARPETA "ENTRADAS" SON LOS LINKS DE LOS ARCHIVOS CSV DE KAGGLE.
+CARPETA "SALIDAS" SON LAS VARIABLES TRANSFORMADAS A CSV.
+CARPETA "VIDEO_PDF" AHÍ SE GUARDÓ EN UN ARCHIVO EN LINK AL VIDEO EXPLICATIVO Y EN OTRO ARCHIVO EL INFORME DEL PROYECTO EN PDF.
+ARCHIVO "APP.PY" ES DONDE SE REALIZA EL TRABAJO CON LA API.
+ARCHIVO "MAIN.PY" ES DONDE SE REALIZAN LAS OPERACIONES PRINCIPALES, TRABAJO DE PANDAS + GRÁFICOS.
+ARCHIVO "README.MD" EXPLICACIÓN DEL PROYECTO EN ESTE FORMATO.
+ARCHIVO "REQUERIMENTS.TXT" ESTÁN ANOTADOS AQUÍ LAS LIBRERÍAS UTILIZADAS PARA EL PROYECTO.
 """
+
+#MAIN.PY ES DONDE SE REALIZAN LAS OPERACIONES PRINCIPALES
 
 import pandas as pd
 import ast
@@ -127,6 +142,7 @@ En general, mirando todo el conjunto, se nota que los idiomas asiáticos (como j
 """
 
 
+#ESTAS 4 VARIABLES TRANSFORMADAS A CSV, SE GUARDAN EN LA CARPETA "SALIDAS" AL PASARSE A CSV.
 roi_por_genero.to_csv("salidas/roi_por_genero.csv", index=False)
 correlaciones_df.to_csv("salidas/correlacion_budget_rating.csv", index=False)
 promedio_runtime_50anios.to_csv("salidas/promedio_runtime_50anios.csv", index=False)

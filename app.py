@@ -1,3 +1,5 @@
+#APP.PY ES DONDE SE REALIZA EL TRABAJO CON LA API
+
 from flask import Flask, jsonify, abort
 from flask_cors import CORS
 import pandas as pd
