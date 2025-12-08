@@ -43,4 +43,4 @@ def rating_idioma():
     return jsonify(df.to_dict(orient="records"))
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True) # permite correr: python app.py
+    app.run(host="127.0.0.1", port=5000, debug=True) # esto permite correr: python app.py

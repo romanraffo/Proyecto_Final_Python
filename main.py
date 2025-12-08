@@ -96,7 +96,7 @@ dataframe["ultimos50anios"] =  (dataframe["anio"] >= 1975) #Teniendo en cuenta q
 
 dataframe_ultimos_50 = dataframe[dataframe["ultimos50anios"] == True]
 promedio_runtime_50anios = dataframe_ultimos_50["runtime"].agg(["mean"])
-print(f"Promedio de duracion de tiempo de la películas en los ultimos 50 anos: -->  {promedio_runtime_50anios}  <--")
+print(f"Promedio de duracion de tiempo de la películas en los ultimos 50 años: -->  {promedio_runtime_50anios}  <--")
 
 
 #6. Distribución del rating por idioma o país de producción.
