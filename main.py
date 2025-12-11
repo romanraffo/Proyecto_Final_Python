@@ -105,13 +105,15 @@ plt.show()
 #3. Evolución de la duración de películas en los últimos 50 años.
 #○ Promedio o mediana de runtime por década.
 
-dataframe["release_date"] = pd.to_datetime(dataframe["release_date"], errors="coerce") #Reescribo el release_date asi se tranforma la fecha en tipo dato.
-dataframe["anio"] = dataframe["release_date"].dt.year #Traigo la columna de la fecha, y a las filas de esa le saco el año. creando la columna año ademas. 
-dataframe["ultimos50anios"] =  (dataframe["anio"] >= 1975) #Teniendo en cuenta que el año actual es 2025. 
+dataframe["release_date"] = pd.to_datetime(dataframe["release_date"], errors="coerce")
+dataframe["anio"] = dataframe["release_date"].dt.year
 
-dataframe_ultimos_50 = dataframe[dataframe["ultimos50anios"] == True]
-promedio_runtime_50anios = dataframe_ultimos_50["runtime"].agg(["mean"])
-print(f"Promedio de duracion de tiempo de la películas en los ultimos 50 años: -->  {promedio_runtime_50anios}  <--")
+dataframe_ultimos_50 = dataframe[dataframe["anio"] >= 1975]
+dataframe_ultimos_50["decada"] = (dataframe_ultimos_50["anio"] // 10) * 10
+promedio_runtime_50anios = dataframe_ultimos_50.groupby("decada")["runtime"].mean().reset_index()
+
+print("Promedio de duración por década en los últimos 50 años:")
+print(promedio_runtime_50anios)
 
 
 #6. Distribución del rating por idioma o país de producción.
