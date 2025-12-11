@@ -50,20 +50,21 @@ dataframe["tipo_genre"] = dataframe["genres"].apply(primer_genre)
 
 # 1. Rentabilidad (ROI) por género o país.
 #Agregado de ROI
-dataframe_valido = dataframe[(dataframe["budget"] > 0) & (dataframe["revenue"] > 0)].copy() #Creo un nuevo dataframe donde los valores de budget y revenue sean mayor a 0, ya que para el roi cuenta como inválidos xq el 0 no se cuenta.
-dataframe_valido["roi"] = dataframe_valido["revenue"] / dataframe_valido["budget"] #Creo una nueva columna con nombre "roi" donde cada fila tendra el calculo de su budget y revenue.
+# Filtrar películas con budget y revenue válidos y budget no ridículo
+dataframe_valido = dataframe[(dataframe["budget"] > 0) & (dataframe["revenue"] > 0)].copy()
+dataframe_valido = dataframe_valido[dataframe_valido["budget"] >= 1000]   # filtro simple
 
-#Calculo por grupos, en este caso lo hice por género.
-roi_por_genero = dataframe_valido.groupby("tipo_genre")["roi"].agg(["count", "mean", "median"]).reset_index() #el count se calcula en base al groupby, y lo demás en base al roi. .agg() es un método de pandas que sirve para aplicar varias funciones estadísticas a la vez sobre un grupo de datos. *count → cuántas películas hay en ese género. *mean → el ROI promedio del género. *median → la mediana del ROI.
-print(roi_por_genero)
+dataframe_valido["roi"] = (dataframe_valido["revenue"] - dataframe_valido["budget"]) / dataframe_valido["budget"] # Calcular ROI
 
-# Ordenar los géneros por ROI promedio antes de graficar
-roi_ordenado = roi_por_genero.sort_values("mean", ascending=False)
+dataframe_valido = dataframe_valido[dataframe_valido["roi"] <= 100] # (Esto es opcional) recortar ROI extremo para que no rompa la escala
+
+roi_por_genero = dataframe_valido.groupby("tipo_genre")["roi"].agg(["count", "mean", "median"]).reset_index() # Agrupar y calcular
+
+roi_ordenado = roi_por_genero.sort_values("mean", ascending=False) # Agrupar y calcular
 
 plt.figure(figsize=(12, 6))
 sns.barplot(data=roi_ordenado, x="tipo_genre", y="mean")
-
-plt.title("ROI promedio por género")
+plt.title("ROI promedio por género (filtro mínimo aplicado)")
 plt.xlabel("Género")
 plt.ylabel("ROI promedio")
 plt.xticks(rotation=45, ha="right")
@@ -96,6 +97,7 @@ correlaciones_df = pd.DataFrame(correlaciones_dict)
 
 # Dispersograma
 sns.scatterplot(data=sub, x="budget", y="vote_average")
+plt.xscale("log")
 plt.title("Presupuesto vs Rating")
 plt.xlabel("Presupuesto (budget)")
 plt.ylabel("Rating (vote_average)")
