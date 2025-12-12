@@ -60,7 +60,7 @@ dataframe_valido = dataframe_valido[dataframe_valido["roi"] <= 100] # (Esto es o
 
 roi_por_genero = dataframe_valido.groupby("tipo_genre")["roi"].agg(["count", "mean", "median"]).reset_index() # Agrupar y calcular
 
-roi_ordenado = roi_por_genero.sort_values("mean", ascending=False) # Agrupar y calcular
+roi_ordenado = roi_por_genero.sort_values("mean", ascending=False) # Agrupo y calculo
 
 plt.figure(figsize=(12, 6))
 sns.barplot(data=roi_ordenado, x="tipo_genre", y="mean")
